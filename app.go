@@ -2,11 +2,10 @@ package main
 
 import (
 	"fmt"
+	"google"
 	"runtime"
 	"sync"
 	"time"
-
-	"./src/google"
 )
 
 func main() {

@@ -1,7 +1,6 @@
 package google
 
 import (
-	"database/sql"
 	"fmt"
 	"io/ioutil"
 	"net/http"
@@ -10,18 +9,18 @@ import (
 	"github.com/antchfx/htmlquery"
 )
 
-func save() error {
-	db, err := sql.Open("mysql", "root@tcp(127.0.0.1:3306)/test")
+// func save() error {
+// 	db, err := sql.Open("mysql", "root@tcp(127.0.0.1:3306)/test")
 
-	if err != nil {
-		fmt.Println("err")
-		return err
-	}
+// 	if err != nil {
+// 		fmt.Println("err")
+// 		return err
+// 	}
 
-	fmt.Println(db)
+// 	fmt.Println(db)
 
-	return nil
-}
+// 	return nil
+// }
 
 func getHtml() (string, error) {
 	url := "http://www.google.com"
@@ -54,4 +53,10 @@ func Crawler() (string, error) {
 	doc, err := htmlquery.Parse(strings.NewReader(html))
 
 	list := htmlquery.Find(doc, "//a")
+
+	for _, val := range list {
+		fmt.Println("-------- google --------", htmlquery.InnerText(val))
+	}
+
+	return html, err
 }
